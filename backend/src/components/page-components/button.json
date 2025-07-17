@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_page_components_buttons",
+  "info": {
+    "displayName": "Button",
+    "icon": "bold"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "type": {
+      "type": "enumeration",
+      "default": "primary",
+      "enum": [
+        "primary",
+        "primary-inverted",
+        "secondary",
+        "secondary-inverted"
+      ]
+    },
+    "target": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

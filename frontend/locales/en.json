@@ -1,0 +1,11 @@
+{
+  "welcome": "Welcome to the website",
+  "menu": {
+    "navigateTo": "Navigate to {label}"
+  },
+  "header": {
+    "logo": {
+      "title": "Go to home"
+    }
+  }
+}

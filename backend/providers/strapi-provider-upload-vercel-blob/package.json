@@ -1,0 +1,27 @@
+{
+  "name": "strapi-provider-upload-vercel-blob",
+  "version": "1.0.0",
+  "description": "Vercel Blob provider for Strapi upload",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "postbuild": "node -e \"console.log('Provider built successfully'); console.log('Checking dist/index.js exists:', require('fs').existsSync('./dist/index.js'));\""
+  },
+  "dependencies": {
+    "@vercel/blob": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "strapi",
+    "provider",
+    "upload",
+    "vercel",
+    "blob"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+} 

@@ -1,0 +1,7 @@
+{
+  "functions": {
+    ".output/server/**/*.js": {
+      "runtime": "nodejs22.x"
+    }
+  }
+} 

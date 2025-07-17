@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_page_components_text_boxes",
+  "info": {
+    "displayName": "TextBox",
+    "icon": "bold"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "content": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "ctas": {
+      "type": "component",
+      "component": "page-components.button",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

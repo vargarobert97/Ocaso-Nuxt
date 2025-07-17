@@ -1,0 +1,9 @@
+// defaults
+body,
+html {
+  @apply antialiased min-h-screen;
+}
+
+.nuxt-root > div {
+  @apply flex flex-col min-h-screen;
+}

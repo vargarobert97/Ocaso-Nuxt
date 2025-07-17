@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_page_hierarchy_responsive_spacings",
+  "info": {
+    "displayName": "ResponsiveSpacing",
+    "icon": "arrows-alt-v"
+  },
+  "options": {},
+  "attributes": {
+    "mobile": {
+      "type": "component",
+      "component": "page-hierarchy.spacing-values",
+      "repeatable": false
+    },
+    "tablet": {
+      "type": "component",
+      "component": "page-hierarchy.spacing-values",
+      "repeatable": false
+    },
+    "desktop": {
+      "type": "component",
+      "component": "page-hierarchy.spacing-values",
+      "repeatable": false
+    },
+    "wide": {
+      "type": "component",
+      "component": "page-hierarchy.spacing-values",
+      "repeatable": false
+    },
+    "xlarge": {
+      "type": "component",
+      "component": "page-hierarchy.spacing-values",
+      "repeatable": false
+    }
+  },
+  "config": {}
+} 

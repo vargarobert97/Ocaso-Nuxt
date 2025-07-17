@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_page_components_hero_sliders",
+  "info": {
+    "displayName": "Hero Slider",
+    "icon": "paintBrush"
+  },
+  "options": {},
+  "attributes": {
+    "Slides": {
+      "type": "component",
+      "component": "page-components.image",
+      "repeatable": true
+    },
+    "autoPlayTimerSec": {
+      "type": "decimal",
+      "default": 5,
+      "min": 0
+    },
+    "slideEffect": {
+      "type": "enumeration",
+      "required": true,
+      "default": "slide",
+      "enum": [
+        "slide",
+        "fade",
+        "flip"
+      ]
+    }
+  },
+  "config": {}
+}

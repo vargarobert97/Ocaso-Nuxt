@@ -1,0 +1,56 @@
+{
+  "collectionName": "components_page_hierarchy_content_sections",
+  "info": {
+    "displayName": "Content Section",
+    "icon": "layout"
+  },
+  "options": {},
+  "attributes": {
+    "margins": {
+      "type": "component",
+      "component": "page-hierarchy.block-spacing",
+      "repeatable": false
+    },
+    "paddings": {
+      "type": "component",
+      "component": "page-hierarchy.block-spacing",
+      "repeatable": false
+    },
+    "maxWidth": {
+      "type": "enumeration",
+      "enum": [
+        "none",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+        "max2xl",
+        "max3xl",
+        "max4xl",
+        "max5xl",
+        "max6xl",
+        "max7xl"
+      ],
+      "default": "none"
+    },
+    "customClassName": {
+      "type": "string",
+      "description": "Custom CSS class names to apply to this section"
+    },
+    "inlineStyles": {
+      "type": "text",
+      "description": "Custom inline CSS styles (e.g., background-color: #f0f0f0; border-radius: 8px;)"
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "page-components.hero",
+        "page-components.simple-text",
+        "page-components.text-box",
+        "page-components.image",
+        "page-components.hero-slider"
+      ]
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "redirects",
+  "info": {
+    "singularName": "redirect",
+    "pluralName": "redirects",
+    "displayName": "Redirect",
+    "description": "Redirects settings to be used in the frontend"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "from": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "to": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "permanent",
+        "temporary"
+      ],
+      "default": "permanent"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

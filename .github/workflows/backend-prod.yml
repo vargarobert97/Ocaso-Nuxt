@@ -1,0 +1,108 @@
+name: Update Backend Production Branch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'backend/**'
+  workflow_dispatch:
+
+jobs:
+  update-backend-prod:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+      
+      - name: Configure Git
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+      
+      - name: Create backend-prod branch
+        id: create-backend-prod
+        run: |
+          # Create or update backend-prod branch
+          git checkout -B backend-prod
+          
+          # Store current state before changes
+          git add -A
+          git commit -m "temp: store current state" || true
+          CURRENT_COMMIT=$(git rev-parse HEAD)
+          
+          # Reset to previous commit to see what changes we'll make
+          git reset --soft HEAD~1 || true
+          
+          # Remove everything except backend
+          git rm -rf frontend/ || true
+          git rm -rf .github/ || true
+          git rm -rf scripts/ || true
+          git rm package.json || true
+          git rm package-lock.json || true
+          git rm README.md || true
+          git rm .nvmrc || true
+          
+          # Move backend contents to root (avoid conflicts)
+          mv backend/src .
+          mv backend/public .
+          mv backend/config .
+          mv backend/database .
+          mv backend/providers .
+          mv backend/package.json .
+          mv backend/tsconfig.json .
+          mv backend/env.example .
+          mv backend/jest.config.js .
+          mv backend/README.md .
+          mv backend/favicon.png .
+          mv backend/.gitignore .
+          mv backend/test .
+          mv backend/scripts .
+          mv backend/coverage . 2>/dev/null || true
+          rm -rf backend/node_modules 2>/dev/null || true
+          
+          # Debug: Check if providers directory exists and has content
+          echo "Checking providers directory..."
+          ls -la providers/ || echo "providers directory not found"
+          ls -la providers/strapi-provider-upload-vercel-blob/ || echo "provider not found"
+          
+          # Remove any remaining files/directories in backend
+          rm -rf backend/* 2>/dev/null || true
+          rm -rf backend/.* 2>/dev/null || true
+          
+          # Force remove backend directory if it still exists
+          rm -rf backend || true
+          
+          # Update package.json name
+          sed -i 's/"name": "backend"/"name": "strapi-backend"/' package.json
+          
+          # Check if there are actual changes
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes detected, skipping commit"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected, will commit"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Commit changes if needed
+        if: steps.create-backend-prod.outputs.has_changes == 'true'
+        run: |
+          git commit -m "Update backend for production deployment [skip ci]"
+      
+      - name: Push to backend-prod branch
+        if: steps.create-backend-prod.outputs.has_changes == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: backend-prod
+          force: true 

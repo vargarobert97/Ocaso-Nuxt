@@ -1,0 +1,62 @@
+{
+  "name": "backend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Strapi application",
+  "scripts": {
+    "build": "npm run build:provider && npm run build:strapi",
+    "build:provider": "cd providers/strapi-provider-upload-vercel-blob && npm install && npm run build && cd ../..",
+    "build:strapi": "NODE_OPTIONS='--max-old-space-size=4096' strapi build",
+    "console": "strapi console",
+    "deploy": "strapi deploy",
+    "dev": "strapi develop",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi",
+    "upgrade": "npx @strapi/upgrade latest",
+    "upgrade:dry": "npx @strapi/upgrade latest --dry",
+    "generate-types": "tsx scripts/generate-types.ts",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage"
+  },
+  "dependencies": {
+    "@_sh/strapi-plugin-ckeditor": "^6.0.2",
+    "@strapi/plugin-cloud": "5.18.0",
+    "@strapi/plugin-graphql": "^5.18.1",
+    "@strapi/plugin-seo": "^2.0.8",
+    "@strapi/plugin-users-permissions": "5.18.0",
+    "@strapi/strapi": "5.18.0",
+    "@vercel/blob": "^1.1.1",
+    "ajv": "^8.17.1",
+    "better-sqlite3": "11.3.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "sharp": "^0.34.2",
+    "strapi-plugin-webp-converter": "^1.0.4",
+    "strapi-provider-upload-vercel-blob": "file:providers/strapi-provider-upload-vercel-blob",
+    "styled-components": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/supertest": "^6.0.3",
+    "jest": "^30.0.3",
+    "supertest": "^7.1.1",
+    "ts-jest": "^29.4.0",
+    "tsx": "^4.20.3",
+    "typescript": "^5",
+    "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
+  },
+  "strapi": {
+    "uuid": "a0a98279-ab71-468a-ae11-196ce81e3b55",
+    "installId": "098b3bd504116391eeab3c155f45f53a635090bb74372cdbb9e4e4b70103a14b"
+  }
+}

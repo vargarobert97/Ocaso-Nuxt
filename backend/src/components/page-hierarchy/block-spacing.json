@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_page_hierarchy_block_spacings",
+  "info": {
+    "displayName": "BlockSpacing",
+    "icon": "expand"
+  },
+  "options": {},
+  "attributes": {
+    "spacingType": {
+      "type": "enumeration",
+      "enum": ["none", "small", "medium", "large", "xlarge", "custom"],
+      "default": "medium",
+      "required": true
+    },
+    "customSpacing": {
+      "type": "component",
+      "component": "page-hierarchy.responsive-spacing",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

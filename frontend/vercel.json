@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/media/:path*",
+      "destination": "https://qf5ejh1bibzs1hcf.public.blob.vercel-storage.com/:path*"
+    }
+  ]
+} 
