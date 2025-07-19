@@ -121,7 +121,7 @@ npm run generate       # Generate static site
   - Change behavior from hover to click
   - Close on click away
 
-### Task 2: English Site URL Fix
+### Task 2: English Site URL Fix ✅ - Around 10 minutes to fix
 
 - **Goal**: Fix incorrect URLs in English site header
 - **Issue**: All URLs wrong except "Locations"
