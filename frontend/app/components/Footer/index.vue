@@ -5,6 +5,8 @@
         <div class="footer__menus">
           <FooterMenu v-if="siteOptions?.footerMenus?.length" :menu-items="siteOptions.footerMenus" />
         </div>
+      </div>
+      <div class="footer__bottom">
         <p class="footer__copyright">© {{ new Date().getFullYear() }} All rights reserved.</p>
       </div>
     </div>
@@ -21,22 +23,26 @@
 
 <style lang="scss" scoped>
   .footer {
-    @apply bg-white border-t border-gray-200 mt-auto;
+    @apply bg-gray-50 border-t border-gray-200 mt-auto w-full;
+  }
 
-    &__container {
-      @apply max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8;
-    }
+  .footer__container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full;
+  }
 
-    &__content {
-      @apply flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0;
-    }
+  .footer__content {
+    @apply flex flex-col md:flex-row justify-start items-start py-10 gap-12;
+  }
 
-    &__menus {
-      @apply flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8;
-    }
+  .footer__menus {
+    @apply w-full;
+  }
 
-    &__copyright {
-      @apply text-center md:text-right text-gray-500 text-sm;
-    }
+  .footer__bottom {
+    @apply border-t border-gray-200 mt-8 pt-6 pb-4 flex justify-center;
+  }
+
+  .footer__copyright {
+    @apply text-center text-gray-500 text-sm;
   }
 </style>

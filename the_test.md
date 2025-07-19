@@ -127,7 +127,7 @@ npm run generate       # Generate static site
 - **Issue**: All URLs wrong except "Locations"
 - **Investigation needed**: Check i18n configuration, language correct link handling
 
-### Task 3: Footer Menu Styling
+### Task 3: Footer Menu Styling ✅ - Around 15 minutes to fix
 
 - **Goal**: Fix footer menu links and styling
 - **Requirements**:
