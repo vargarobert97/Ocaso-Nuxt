@@ -6,12 +6,12 @@
         <ul class="footer-menu__list">
           <li v-for="subItem in menuItem.subItems" :key="subItem.label" class="footer-menu__item">
             <NuxtLink
-              v-if="subItem.url"
-              :to="getLocalizedUrl(subItem.url)"
+              v-if="subItem.url || subItem.page?.slug"
+              :to="getLocalizedUrl(subItem)"
               :target="subItem.target"
               class="footer-menu__link"
               :title="t('menu.navigateTo', { label: subItem.label })"
-              :class="{ 'footer-menu__link--active': isActiveLink(getLocalizedUrl(subItem.url)) }"
+              :class="{ 'footer-menu__link--active': isActiveLink(getLocalizedUrl(subItem)) }"
             >
               {{ subItem.label }}
             </NuxtLink>
@@ -33,14 +33,21 @@
   }>();
 
   const route = useRoute();
-  const {t, locale } = useI18n();
+  const { t, locale } = useI18n();
+
+  const normalizePath = (path: string) => {
+    if (!path) return '';
+    // Always start with a single slash, remove trailing slash
+    return '/' + path.replace(/^\/+/, '').replace(/\/+$/, '');
+  };
 
   const isActiveLink = (url: string) => {
     if (!url) return false;
-    return route.path === url;
+    return normalizePath(route.path) === normalizePath(url);
   };
 
-  const getLocalizedUrl = (url: string) => {
+  const getLocalizedUrl = (subItem: any) => {
+    const url = subItem.url || subItem.page?.slug;
     if (!url) return '';
     // If it's already a full URL, return as is
     if (url.startsWith('http')) return url;
@@ -49,14 +56,17 @@
     const defaultLocale = config.public.i18n?.defaultLocale || 'en';
     if (locale.value === defaultLocale) return url;
     // For other locales, add the locale prefix
-    return `/${locale.value}${url}`;
+    return `/${locale.value}${url.startsWith('/') ? '' : '/'}${url}`;
   };
-
 </script>
 
 <style lang="scss" scoped>
   .footer-menu {
     @apply flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-8;
+
+    &__block {
+      @apply flex flex-row flex-wrap gap-12;
+    }
 
     &__section {
       @apply flex flex-col;
@@ -86,4 +96,4 @@
       }
     }
   }
-</style> 
+</style>
