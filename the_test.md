@@ -113,7 +113,7 @@ npm run generate       # Generate static site
 
 ## Programming Tasks
 
-### Task 1: Header Dropdown Enhancement
+### Task 1: Header Dropdown Enhancement ✅ - Around 20 minutes to fix
 
 - **Goal**: Add caret icon (Font Awesome SVG) to header menu dropdowns
 - **Requirements**:
