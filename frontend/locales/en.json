@@ -7,5 +7,10 @@
     "logo": {
       "title": "Go to home"
     }
+  },
+  "mobileMenu": {
+    "toggle": "Toggle mobile menu",
+    "close": "Close mobile menu",
+    "language": "Language"
   }
 }
