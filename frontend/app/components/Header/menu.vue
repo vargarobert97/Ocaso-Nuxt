@@ -65,7 +65,7 @@
     const defaultLocale = config.public.i18n?.defaultLocale || 'en';
     if (locale.value === defaultLocale) return url;
     // For other locales, add the locale prefix
-    return `/${locale.value}${url}`;
+    return `/${locale.value}${url.startsWith('/') ? '' : '/'}${url}`;
   };
 </script>
 
