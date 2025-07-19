@@ -203,6 +203,7 @@
       @apply fixed inset-0 bg-black bg-opacity-50 z-40;
     }
 
+    //Discuss with Laszlo
     &__drawer {
       // @apply fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-xl z-50 flex flex-col;
       @apply fixed top-16 right-0 h-[calc(100vh-4rem)] w-80 max-w-[85vw] bg-white shadow-xl z-50 flex flex-col;
