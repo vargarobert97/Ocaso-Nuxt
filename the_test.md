@@ -155,13 +155,13 @@ npm run generate       # Generate static site
   - Implement solution (composable/Pinia/other?)
 - **Investigation**: GraphQL playground at `http://localhost:1337/graphql`
 
-### Task 6: General Site CSS
+### Task 6: General Site CSS ✅ - Around 30 minutes to fix
 
 - **Goal**: Create comprehensive responsive CSS system that handles general html elements not handled at the component level
 - **Requirements**:
-  - Responsive typography (h1-h6 hierarchy)
-  - Consistent spacing system (margins/paddings)
-  - Font choices and sizing (font-family, font-size, font-weight, line-height, letter-spacing, etc.)
+  - Responsive typography (h1-h6 hierarchy) ✅
+  - Consistent spacing system (margins/paddings) ✅
+  - Font choices and sizing (font-family, font-size, font-weight, line-height, letter-spacing, etc.) ✅
   - Basically a global.css if you will
 
 ### Task 7: Hero Slider Autoplay
