@@ -177,7 +177,7 @@ npm run generate       # Generate static site
 - **Requirements**:
   - Container max-width handling, in the CMS the /standorte pages components are set with max-widths but the layout is not working as expected
 
-### Task 9: Custom Margins/Paddings Fix
+### Task 9: Custom Margins/Paddings Fix ⚠️ - Ran out of time while debugging Strapi fields
 
 - **Goal**: Fix custom spacing functionality
 - **Issue**: Custom margins/paddings not working in /standorte pages second component

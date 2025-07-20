@@ -6,12 +6,15 @@
       customClassName && customClassName,
       `content-section--max-width-${maxWidth}`,
       `content-section--index-${index}`,
+      marginClass,
+      paddingClass,
       {
         'content-section--first': isFirst,
         'content-section--last': isLast,
       },
       sectionClass,
     ]"
+    :style="customSpacingStyle"
   >
     <div class="content-section__container">
       <PageComponentsDynamicComponent
@@ -25,6 +28,7 @@
 
 <script setup lang="ts">
   import type { ContentSection } from '~/types/graphql';
+  import type { BlockSpacing, ResponsiveSpacing } from '~/types/strapi';
 
   const { content, index, isFirst, isLast } = defineProps<{
     content: ContentSection;
@@ -33,25 +37,101 @@
     isLast: boolean;
   }>();
 
-  const maxWidth = content.maxWidth || 'none';
-  const customClassName = content.customClassName;
-
   // Generate unique ID for this section
   const sectionId = useId();
-
   // Generate unique class name for this section
   const sectionClass = `content-section--${sectionId}`;
 
-  // Inject sanitized CSS if inlineStyles exist
+  const maxWidth = content.maxWidth || 'none';
+  const customClassName = content.customClassName;
+
+  // Margin and padding class logic
+  function getSpacingClass(block?: BlockSpacing, type: 'margin' | 'padding' = 'margin') {
+    if (!block || !block.spacingType || block.spacingType === 'none') return '';
+    const prefix = type === 'margin' ? 'm' : 'p';
+    switch (block.spacingType) {
+      case 'small':
+        return `${prefix}-2`;
+      case 'medium':
+        return `${prefix}-4`;
+      case 'large':
+        return `${prefix}-6`;
+      case 'xlarge':
+        return `${prefix}-8`;
+      default:
+        return '';
+    }
+  }
+  const marginClass = getSpacingClass(content.margins, 'margin');
+  const paddingClass = getSpacingClass(content.paddings, 'padding');
+
+  // Custom spacing style logic
+  function getCustomSpacingStyle(block?: BlockSpacing) {
+    if (!block || block.spacingType !== 'custom' || !block.customSpacing) return {};
+    const style: Record<string, string> = {};
+    const breakpoints = ['mobile', 'tablet', 'desktop', 'wide', 'xlarge'];
+    const sides = ['top', 'right', 'bottom', 'left'];
+    const cssProps: Record<string, string> = {
+      top: 'marginTop',
+      right: 'marginRight',
+      bottom: 'marginBottom',
+      left: 'marginLeft',
+    };
+    const padProps: Record<string, string> = {
+      top: 'paddingTop',
+      right: 'paddingRight',
+      bottom: 'paddingBottom',
+      left: 'paddingLeft',
+    };
+    const customSpacing = block.customSpacing as Record<string, any>;
+    // For responsive CSS
+    const responsiveCSS: string[] = [];
+    const mediaQueries: Record<string, string> = {
+      tablet: '@media (min-width: 640px)',
+      desktop: '@media (min-width: 1024px)',
+      wide: '@media (min-width: 1280px)',
+      xlarge: '@media (min-width: 1536px)',
+    };
+    for (const bp of breakpoints) {
+      const spacing: Record<string, any> = customSpacing?.[bp];
+      if (spacing) {
+        for (const side of sides) {
+          const value = spacing[side];
+          if (value !== undefined && value !== null) {
+            if (bp === 'mobile') {
+              if (block === content.margins) style[cssProps[side]] = value + 'px';
+              if (block === content.paddings) style[padProps[side]] = value + 'px';
+            } else {
+              // Generate CSS for this breakpoint
+              const prop = block === content.margins ? cssProps[side] : padProps[side];
+              const selector = `.${sectionClass}`;
+              const cssRule = `${selector} { ${prop}: ${value}px; }`;
+              responsiveCSS.push(`${mediaQueries[bp]} { ${cssRule} }`);
+            }
+          }
+        }
+      }
+    }
+    // Inject responsive CSS if any
+    if (responsiveCSS.length > 0) {
+      useHead({
+        style: [{ innerHTML: responsiveCSS.join('\n') }],
+      });
+    }
+    return style;
+  }
+  // Merge custom margin and padding styles for mobile (inline)
+  const customSpacingStyle = {
+    ...getCustomSpacingStyle(content.margins),
+    ...getCustomSpacingStyle(content.paddings),
+  };
+
+  // Existing inlineStyles logic remains unchanged
   if (content.inlineStyles) {
     const sanitizedCSS = sanitizeCSS(content.inlineStyles, sectionClass);
     if (sanitizedCSS) {
       useHead({
-        style: [
-          {
-            innerHTML: sanitizedCSS,
-          },
-        ],
+        style: [{ innerHTML: sanitizedCSS }],
       });
     }
   }
