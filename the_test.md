@@ -164,7 +164,7 @@ npm run generate       # Generate static site
   - Font choices and sizing (font-family, font-size, font-weight, line-height, letter-spacing, etc.) ✅
   - Basically a global.css if you will
 
-### Task 7: Hero Slider Autoplay
+### Task 7: Hero Slider Autoplay ✅ - Around 10 minutes to fix
 
 - **Goal**: make it work that 0 second is turned off and > 0 second is turned on with the correct delay
 - **Requirements**:
@@ -182,7 +182,7 @@ npm run generate       # Generate static site
 - **Goal**: Fix custom spacing functionality
 - **Issue**: Custom margins/paddings not working in /standorte pages second component
 
-### Task 10: Hero Slider with Text Overlay ✅ - Around 10 minutes to fix
+### Task 10: Hero Slider with Text Overlay
 
 - **Goal**: Create new hero slider variant with text content
 - **Requirements**:
