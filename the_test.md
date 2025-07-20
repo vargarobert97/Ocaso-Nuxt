@@ -171,7 +171,7 @@ npm run generate       # Generate static site
   - Autoplay should work
   - Autoplay should be configurable
 
-### Task 8: Layout Fix
+### Task 8: Layout Fix ✅ - Around 20 minutes to fix (I can't see width dropdown in Strapi)
 
 - **Goal**: Fix layout max-width and width issues, make it work for all pages
 - **Requirements**:
