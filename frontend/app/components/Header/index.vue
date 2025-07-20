@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header" :class="{ 'header--hidden': !isHeaderVisible }">
     <div class="header__container">
       <div class="header__content">
         <!-- Logo -->
@@ -65,24 +65,48 @@
       @close="closeMobileMenu"
     />
   </header>
+  <div class="header-spacer"></div>
 </template>
 
 <script setup lang="ts">
   import type { SiteOption } from '~/types/strapi';
-  import { ref } from 'vue';
+  import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
+  import { useI18n } from 'vue-i18n';
+  import { useRoute } from 'vue-router';
 
-  const { t } = useI18n();
+  const props = defineProps<{ siteOptions: SiteOption }>();
 
-  defineProps<{
-    siteOptions: SiteOption;
-  }>();
+  const isHeaderVisible = ref(true);
+  const isMobileMenuOpen = ref(false);
+  const lastScrollY = ref(0);
 
-  const { locale, locales, setLocale } = useI18n();
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY < 0) return;
+    if (currentScrollY > lastScrollY.value) {
+      // Scrolling down (even a little)
+      isHeaderVisible.value = false;
+    } else if (currentScrollY < lastScrollY.value) {
+      // Scrolling up
+      isHeaderVisible.value = true;
+    }
+    lastScrollY.value = currentScrollY;
+  };
+
+  onMounted(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+  });
+
+  onBeforeUnmount(() => {
+    window.removeEventListener('scroll', handleScroll);
+  });
+
+  const { t, locale, locales } = useI18n();
+  const setLocale = (code: string) => {
+    locale.value = code as typeof locale.value;
+  };
   const currentLocale = locale;
   const availableLocales = locales;
-
-  // Mobile menu state
-  const isMobileMenuOpen = ref(false);
 
   const toggleMobileMenu = () => {
     isMobileMenuOpen.value = !isMobileMenuOpen.value;
@@ -92,7 +116,6 @@
     isMobileMenuOpen.value = false;
   };
 
-  // Close mobile menu on route change
   const route = useRoute();
   watch(
     () => route.path,
@@ -101,7 +124,6 @@
     }
   );
 
-  // Close mobile menu on locale change
   watch(
     () => locale.value,
     () => {
@@ -112,8 +134,10 @@
 
 <style lang="scss" scoped>
   .header {
-    @apply bg-white shadow-sm border-b border-gray-200;
-
+    @apply fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-gray-200 transition-transform ease-in-out duration-300;
+    &--hidden {
+      transform: translateY(-100%);
+    }
     &__container {
       @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
     }
@@ -164,5 +188,8 @@
         @apply bg-gray-800 text-white cursor-default;
       }
     }
+  }
+  .header-spacer {
+    height: var(--header-height, 4rem);
   }
 </style>
