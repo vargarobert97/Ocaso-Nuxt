@@ -196,7 +196,7 @@ npm run generate       # Generate static site
 - **Issue**: Blank grey area on mobile, no images visible
 - **Investigation**: Check responsive image handling
 
-### Task 12: Header Scroll Behavior
+### Task 12: Header Scroll Behavior ✅ - Around 45 minutes to fix
 
 - **Goal**: Implement smart header visibility
 - **Requirements**:
