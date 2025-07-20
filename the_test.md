@@ -190,7 +190,7 @@ npm run generate       # Generate static site
   - Implement on both frontend and backend
   - Text overlay on slider images (optional)
 
-### Task 11: Mobile Slider Fix
+### Task 11: Mobile Slider Fix ✅ - Around 5 minutes to fix (mobileImage field was empty in Hero Slider Strapi Component)
 
 - **Goal**: Fix mobile slider image display
 - **Issue**: Blank grey area on mobile, no images visible
