@@ -145,7 +145,7 @@ npm run generate       # Generate static site
   - Lock page scroll when open
   - Close on navigation/locale change
 
-### Task 5: Locale Change Enhancement
+### Task 5: Locale Change Enhancement ❌ - Estimation to complete around 1-2h (it's tricky to estimate) depends on how fast you find problem in GraphQL and implement correct solution. Reason for not completing the task: I didn’t fully understand the task and wanted to avoid wasting time on it incorrectly.
 
 - **Goal**: Fix locale switching on non-homepage pages
 - **Requirements**:
@@ -177,12 +177,12 @@ npm run generate       # Generate static site
 - **Requirements**:
   - Container max-width handling, in the CMS the /standorte pages components are set with max-widths but the layout is not working as expected
 
-### Task 9: Custom Margins/Paddings Fix
+### Task 9: Custom Margins/Paddings Fix ⚠️ - Ran out of time while debugging Strapi fields
 
 - **Goal**: Fix custom spacing functionality
 - **Issue**: Custom margins/paddings not working in /standorte pages second component
 
-### Task 10: Hero Slider with Text Overlay
+### Task 10: Hero Slider with Text Overlay ❌ - Estimation to complete around 45-60 minutes. Have to add new fields to Strapi CMS, run script to generate new types, extend existing code to accept optional fields.
 
 - **Goal**: Create new hero slider variant with text content
 - **Requirements**:
