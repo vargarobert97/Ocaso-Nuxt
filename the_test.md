@@ -182,7 +182,7 @@ npm run generate       # Generate static site
 - **Goal**: Fix custom spacing functionality
 - **Issue**: Custom margins/paddings not working in /standorte pages second component
 
-### Task 10: Hero Slider with Text Overlay
+### Task 10: Hero Slider with Text Overlay ✅ - Around 10 minutes to fix
 
 - **Goal**: Create new hero slider variant with text content
 - **Requirements**:
