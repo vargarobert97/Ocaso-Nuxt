@@ -10,7 +10,7 @@
         :speed="1000"
         :navigation="true"
         :pagination="{ clickable: true }"
-        :autoplay="false"
+        :autoplay="autoplayOption"
         class="hero-swiper"
       >
         <SwiperSlide v-for="(slide, index) in component.Slides" :key="index" class="hero-slide">
@@ -47,9 +47,14 @@
 
   type HeroSliderComponent = WithTypename<HeroSlider>;
 
-  defineProps<{
+  const { component } = defineProps<{
     component: HeroSliderComponent;
   }>();
+
+  const autoplayOption =
+    !component.autoPlayTimerSec || component.autoPlayTimerSec <= 0
+      ? false
+      : { delay: component.autoPlayTimerSec * 1000 };
 </script>
 
 <style scoped>
