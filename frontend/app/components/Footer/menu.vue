@@ -37,7 +37,6 @@
 
   const normalizePath = (path: string) => {
     if (!path) return '';
-    // Always start with a single slash, remove trailing slash
     return '/' + path.replace(/^\/+/, '').replace(/\/+$/, '');
   };
 

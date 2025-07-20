@@ -11,7 +11,6 @@
         @keydown.enter.prevent="toggleDropdown(index)"
       >
         {{ item.label }}
-        <!-- Font Awesome caret-down SVG -->
         <svg
           :class="['caret-icon', { 'caret-icon--open': openDropdown === index }]"
           xmlns="http://www.w3.org/2000/svg"

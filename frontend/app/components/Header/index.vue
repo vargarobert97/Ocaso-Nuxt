@@ -2,7 +2,6 @@
   <header class="header" :class="{ 'header--hidden': !isHeaderVisible }">
     <div class="header__container">
       <div class="header__content">
-        <!-- Logo -->
         <div class="header__logo-section">
           <NuxtLink to="/" class="header__logo" aria-label="Home" :title="t('header.logo.title')">
             <SharedStrapiImage
@@ -31,7 +30,6 @@
           <HeaderMenu :menu-items="siteOptions?.headerMenu?.menuItems || []" />
         </nav>
 
-        <!-- Mobile Menu Button -->
         <button
           type="button"
           class="header__mobile-btn"
@@ -58,7 +56,6 @@
       </div>
     </div>
 
-    <!-- Mobile Menu -->
     <HeaderMobileMenu
       :is-open="isMobileMenuOpen"
       :menu-items="siteOptions?.headerMenu?.menuItems || []"
